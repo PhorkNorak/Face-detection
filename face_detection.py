@@ -1,6 +1,6 @@
 import cv2
 
-# Load the pre-trained classifiers for face and eye detection
+# Load the pre-trained classifiers for face detection
 face_detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # Start capturing video from the webcam
@@ -18,13 +18,13 @@ while cap.isOpened():
     # Detect faces in the grayscale frame
     faces = face_detector.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=4)
     
-    # Draw rectangles around detected faces and eyes
+    # Draw rectangles around detected faces 
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 3)
         roi_gray = gray[y:y+h, x:x+w]
         roi_color = frame[y:y+h, x:x+w]
     
-    # Display the frame with the detected faces and eyes
+    # Display the frame with the detected faces
     cv2.imshow("Face Detection", frame)
     
     # Break the loop if 'q' is pressed
